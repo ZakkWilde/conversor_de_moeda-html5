@@ -11,12 +11,6 @@
 				location.href = "entrada.html";
 			}
 			
-			function carregaResposta(){
-				var oUrl = new URL(location.href);
-				var sValorOrigem = oUrl.searchParams.get("valor_origem");
-				console.log(sValorOrigem);
-			}
-			
 			function callBack(){
 				console.log("Caiu Aqui");
 				var oResponse = this;
@@ -25,7 +19,11 @@
 				var sReais = oJSON.rates.BRL;
 				console.log(sReais);
 				
-				document.querySelector("#valor_destino").value = sReais;
+				var oUrl = new URL(location.href);
+				var sValorOrigem = oUrl.searchParams.get("valor_origem");
+				console.log(sValorOrigem);
+				
+				document.querySelector("#valor_destino").value = sReais * sValorOrigem;
 			}
 			
 			function chamaAPI(){
